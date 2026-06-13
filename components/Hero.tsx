@@ -14,7 +14,7 @@ export default function Hero() {
             <span>{profile.currentPosition}</span>
           </p>
 
-          <h1 className="mt-8 font-light uppercase leading-[0.92] tracking-tightest text-text-ondark animate-fade-up">
+          <h1 className="mt-8 font-light uppercase leading-[0.92] tracking-tightest text-[#1e3a8a] animate-fade-up">
             <span className="block text-[clamp(2.75rem,9vw,7rem)]">
               {profile.firstName}
             </span>
@@ -56,12 +56,12 @@ export default function Hero() {
             style={{ animationDelay: "200ms" }}
           >
             <Image
-              src="/images/portrait-primary.jpg"
+              src="/images/blue-dry.png"
               alt={`${profile.name}, ${profile.role}`}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 40vw"
-              className="object-cover grayscale contrast-[1.05]"
+              className="object-cover contrast-[1.05]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-bg-primary/40 via-transparent to-transparent" />
             <CornerBrackets />
