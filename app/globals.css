@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-elevated: #111111;
+  --bg-secondary: #f5f5f2;
+  --text-on-dark: #ffffff;
+  --text-muted: #999999;
+  --text-on-light: #111111;
+  --divider: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-on-dark);
+  font-feature-settings: "ss01", "cv01";
+}
+
+::selection {
+  background: #ffffff;
+  color: #0a0a0a;
+}
+
+/* Thin custom scrollbar to match the editorial feel */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+@layer components {
+  /* Tiny bracketed uppercase technical label — e.g. [ 001 ] / [ WE ARE ] */
+  .micro-label {
+    @apply inline-flex items-center gap-2 text-[11px] uppercase tracking-label text-text-muted;
+  }
+
+  /* Section index three-digit number */
+  .section-index {
+    @apply text-[11px] uppercase tracking-label text-text-muted tabular-nums;
+  }
+
+  /* Standard 1px section divider on dark */
+  .rule {
+    @apply border-t border-divider;
+  }
+
+  /* Interactive link with trailing arrow */
+  .link-arrow {
+    @apply inline-flex items-center gap-1.5 transition-opacity duration-300 hover:opacity-60;
+  }
+
+  .container-x {
+    @apply mx-auto w-full max-w-container px-6 md:px-10 lg:px-16;
+  }
+}
+
+@layer utilities {
+  /* Reveal-on-scroll initial state; .is-visible is toggled by IntersectionObserver */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
